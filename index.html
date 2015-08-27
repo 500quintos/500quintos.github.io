@@ -2,17 +2,123 @@
 
 <html>
 <head>
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
     <title>500 quintos</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 </head>
 <body>
     <div class="container theme-showcase">
-        <div class="jumbotron">
-            <h1>500 Quintos: El Registro</h1>
+        <div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<h1>500 Quintos: El Registro</h1>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+			
+					<form id="register" novalidate="novalidate">
+					  <div class="form-group">
+						<input type="text" class="form-control" placeholder="Nombre" name="nombre" required>
+					  </div>					
+					  <div class="form-group">
+						<input type="email" class="form-control" placeholder="Email" name="email" required>
+					  </div>			  
+					  <div class="form-group">
+						<input type="password" class="form-control" placeholder="Password" name="password" required>
+					  </div>
+					  <div class="form-group">
+						<label for="foto">Foto</label>
+						<input type="file" id="foto" >
+						<p class="help-block">Imagen &lt; 1Mb</p>
+					  </div>
+					  <button type="submit" class="btn btn-success">Regístrame!</button>
+					</form>
+			
+			
+			
+
+			</div>
         </div>
     </div>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+	
+	<script>
+		var firebaseRef = 'https://500quintos.firebaseio.com/users';
+
+		jQuery.extend(jQuery.validator.messages, {
+			required: "Este campo es obligatorio.",
+			email: "Porfavor, usa un email válido."
+		});
+		
+		$.validator.addMethod('filesize', function(value, element, param) {
+			// param = size (en bytes) 
+			// element = element to validate (<input>)
+			// value = value of the element (file name)
+			return this.optional(element) || (element.files[0].size <= param) 
+		});
+		
+		$('#register').validate({
+			rules: { inputimage: { required: true, accept: "png|jpe?g|gif", filesize: 1048576  }},
+			messages: { inputimage: "La imagen ha de ser JPG, GIF o PNG, de menos de 1MB" }
+		});
+		
+		$(document).ready(function(){
+			var f;
+			var reader;
+			var filePayload;
+			
+			$('#foto').change(function(event){
+				var input = event.target;
+				var reader = new FileReader();
+				reader.onload = function(){
+				  filePayload = reader.result;
+				};
+				reader.readAsDataURL(input.files[0]);		
+			});
+		
+			$('#register').submit(function(event){
+				event.preventDefault();
+				if($('#register').valid()){		
+				
+					var _name = $(this).find('input[name=nombre]').val();
+					var _email = $(this).find('input[name=email]').val();
+					var _password = $(this).find('input[name=password]').val();
+				
+					var usersRef = new Firebase(firebaseRef);
+					console.log(usersRef);
+					usersRef.child(_name).once('value', function(snapshot) {
+						var exists = (snapshot.val() !== null);
+						console.log(exists);
+						if(!exists){
+							console.log('not exists');
+							var url = firebaseRef + '/' + _name;				
+							var f = new Firebase(url);
+							user = {
+								nombre: _name,
+								email: _email,
+								password: _password,
+							};
+							if(filePayload){
+								user.foto = filePayload;
+							}
+							console.log(user);
+							f.set(user, function(){
+								alert('guardado');
+							});
+						}else{
+							var $validator = $("#register").validate();
+							errors = { nombre: 'este nombre está siendo usado, por favor escoge otro' };	
+							$validator.showErrors(errors);    
+						}
+					});
+				}
+			});
+		
+		});
+	</script>
+	
+	
 </body>
 </html>
