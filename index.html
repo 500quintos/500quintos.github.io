@@ -7,183 +7,104 @@
     <title>500 quintos</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container theme-showcase">
         <div class="row">
-			<div class="col-xs-12 col-sm-6">
-				<h1></h1>
-			</div>
-      <div class="col-xs-12 col-sm-6 list" style="display:none;">
-        <div class="row">
-          <div class="col-xs-6">
-            <img src="" class="avatar" style="width:100%;">
-          </div>
-          <div class="col-xs-6">
-            <p class="name"></p>
-            <p class="bio"></p>
-          </div>
-        </div>
-      </div>
-			<div class="col-xs-12 col-sm-6 signup">
+					<div class="col-xs-12">
+						<h1>Los 500 Quintos</h1>
+						<p>BCN Edition</p>
+					</div>
+					<!-- video -->
+					<div class="col-xs-12 col-sm-6">
+						<div class="video-container">
+							<iframe width="560" height="315" src="" frameborder="0" allowfullscreen id="video"></iframe>
+						</div>
+					</div>
+					<!-- my data -->
+		      <div class="col-xs-12 col-sm-6 my-data" style="display:none;">
 
-        <ul id="myTabs" class="nav nav-tabs" role="tablist">
-          <li class="active"><a href="#" id="register-tab" data-toggle="register-div">Register</a></li>
-          <li><a href="#" id="login-tab" data-toggle="login-div">Login</a></li>
-        </ul>
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#">Mis datos</a></li>
+						</ul>
 
-        <div id="register-div" class="tab-content">
-          <form id="register" novalidate="novalidate">
-            <div class="form-group">
-            <input type="text" class="form-control" placeholder="Nombre" name="nombre" required>
-            </div>
-            <div class="form-group">
-            <input type="email" class="form-control" placeholder="Email" name="email" required>
-            </div>
-            <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" name="password" required>
-            </div>
-            <div class="form-group">
-            <label for="foto">Foto</label>
-            <input type="file" id="foto" >
-            <p class="help-block">Imagen &lt; 1Mb</p>
-            </div>
-            <button type="submit" class="btn btn-success">Regístrame!</button>
-          </form>
-        </div>
-        <div id="login-div" style="display:none;" class="tab-content">
-          <form id="login" novalidate="novalidate">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nombre" name="nombre" required>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" placeholder="Password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-success">Login!</button>
-          </form>
-        </div>
+						<div class="mis-datos">
+							<div class="row">
+								<div class="col-xs-6">
+									<img src="" class="avatar" style="width:100%;">
+									<div class="form-group">
+				            <label for="foto">Foto</label>
+				            <input type="file" class="foto" >
+				            <span class="help-block">Imagen &lt; 1Mb</span>
+			            </div>
+								</div>
 
-			</div>
+								<div class="col-xs-6">
+									<label>Nombre:</label>
+									<p class="name"></p>
+									<label for="bio">Bio:</label>
+									<textarea class="form-control" id="bio" placeholder="escribe una breve descripción sobre tí para saber quién eres.">test</textarea>
+								</div>
+								<a href="#" class="guardar btn btn-success">Guardar</a>
+								<div style="clear:both"></div>
+							</div>
+		        </div>
+		      </div>
+
+					<!-- sign up -->
+					<div class="col-xs-12 col-sm-6 signup">
+
+		        <ul id="myTabs" class="nav nav-tabs" role="tablist">
+		          <li class="active"><a href="#" id="register-tab" data-toggle="register-div">Register</a></li>
+		          <li><a href="#" id="login-tab" data-toggle="login-div">Login</a></li>
+		        </ul>
+
+		        <div id="register-div" class="tab-content">
+		          <form id="register" novalidate="novalidate">
+		            <div class="form-group">
+		            <input type="text" class="form-control" placeholder="Nombre" name="nombre" required>
+		            </div>
+		            <div class="form-group">
+		            <input type="email" class="form-control" placeholder="Email" name="email" required>
+		            </div>
+		            <div class="form-group">
+		            <input type="password" class="form-control" placeholder="Password" name="password" required>
+		            </div>
+		            <div class="form-group">
+			            <label for="foto">Foto</label>
+			            <input type="file" class="foto" >
+			            <span class="help-block">Imagen &lt; 1Mb</span>
+		            </div>
+		            <button type="submit" class="btn btn-success">Regístrame!</button>
+		          </form>
+		        </div>
+		        <div id="login-div" style="display:none;" class="tab-content">
+		          <form id="login" novalidate="novalidate">
+		            <div class="form-group">
+		              <input type="text" class="form-control" placeholder="Nombre" name="nombre" required value="marcos">
+		            </div>
+		            <div class="form-group">
+		              <input type="password" class="form-control" placeholder="Password" name="password" required value="123123">
+		            </div>
+		            <button type="submit" class="btn btn-success">Login!</button>
+		          </form>
+		        </div>
+					</div>
+
+					<!-- chat -->
+					<div class="col-xs-12 inscritos" style="display:none;">
+						<h2 id="chat-title">Los inscritos:</h2>
+						<div class="row"></div>
+					</div>
+
         </div>
     </div>
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+	<script src="behaviour.js"></script>
 
-	<script>
-		var firebaseRef = 'https://500quintos.firebaseio.com/users';
-    var me = null;
-		jQuery.extend(jQuery.validator.messages, {
-			required: "Este campo es obligatorio.",
-			email: "Porfavor, usa un email válido."
-		});
-
-		$.validator.addMethod('filesize', function(value, element, param) {
-			// param = size (en bytes)
-			// element = element to validate (<input>)
-			// value = value of the element (file name)
-			return this.optional(element) || (element.files[0].size <= param)
-		});
-
-		$('#register').validate({
-			rules: { inputimage: { required: true, accept: "png|jpe?g|gif", filesize: 1048576  }},
-			messages: { inputimage: "La imagen ha de ser JPG, GIF o PNG, de menos de 1MB" }
-		});
-
-		$(document).ready(function(){
-			var f;
-			var reader;
-			var filePayload;
-
-      $("#myTabs a").click(function(){
-        $("#myTabs .active").removeClass("active");
-        $(this).parent().addClass("active");
-        var activate_div = $(this).data("toggle");
-        $("#myTabs").parent().find("> div").hide();
-        $("#"+activate_div).show();
-      });
-
-			$('#foto').change(function(event){
-				var input = event.target;
-				var reader = new FileReader();
-				reader.onload = function(){
-				  filePayload = reader.result;
-				};
-				reader.readAsDataURL(input.files[0]);
-			});
-
-      $("#login").submit(function(event){
-
-        event.preventDefault();
-        var usersRef = new Firebase(firebaseRef);
-        var _name = $(this).find('input[name=nombre]').val();
-        var _password = $(this).find('input[name=password]').val();
-
-        if($('#login').valid()){
-          usersRef.child(_name).once('value', function(snapshot) {
-            if(snapshot.val() !== null && snapshot.val().password == _password){
-
-              me = snapshot.val();
-              console.log(me);
-              $(".list").find(".avatar").attr("src", me.foto);
-              $(".list").find(".name").text("Nombre:" + me.nombre);
-              $(".signup").remove();
-              $(".list").show();
-
-            }else{
-
-  							var $validator = $("#login").validate();
-  							errors = { password: 'credenciales incorrectas' };
-  							$validator.showErrors(errors);
-
-            }
-          });
-        }
-
-
-
-      });
-
-			$('#register').submit(function(event){
-				event.preventDefault();
-				if($('#register').valid()){
-
-					var _name = $(this).find('input[name=nombre]').val();
-					var _email = $(this).find('input[name=email]').val();
-					var _password = $(this).find('input[name=password]').val();
-
-					var usersRef = new Firebase(firebaseRef);
-
-					usersRef.child(_name).once('value', function(snapshot) {
-						var exists = (snapshot.val() !== null);
-
-						if(!exists){
-
-							var url = firebaseRef + '/' + _name;
-							var f = new Firebase(url);
-							user = {
-								nombre: _name,
-								email: _email,
-								password: _password,
-							};
-							if(filePayload){
-								user.foto = filePayload;
-							}
-							console.log(user);
-							f.set(user, function(){
-								alert('guardado');
-							});
-						}else{
-							var $validator = $("#register").validate();
-							errors = { nombre: 'este nombre está siendo usado, por favor escoge otro' };
-							$validator.showErrors(errors);
-						}
-					});
-				}
-			});
-
-		});
-	</script>
 
 
 </body>
