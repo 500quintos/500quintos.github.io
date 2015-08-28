@@ -15,7 +15,15 @@
 				<h1></h1>
 			</div>
       <div class="col-xs-12 col-sm-6 list" style="display:none;">
-        dentro
+        <div class="row">
+          <div class="col-xs-6">
+            <img src="" class="avatar" style="width:100%;">
+          </div>
+          <div class="col-xs-6">
+            <p class="name"></p>
+            <p class="bio"></p>
+          </div>
+        </div>
       </div>
 			<div class="col-xs-12 col-sm-6 signup">
 
@@ -64,7 +72,7 @@
 
 	<script>
 		var firebaseRef = 'https://500quintos.firebaseio.com/users';
-
+    var me = null;
 		jQuery.extend(jQuery.validator.messages, {
 			required: "Este campo es obligatorio.",
 			email: "Porfavor, usa un email válido."
@@ -115,6 +123,10 @@
           usersRef.child(_name).once('value', function(snapshot) {
             if(snapshot.val() !== null && snapshot.val().password == _password){
 
+              me = snapshot.val();
+              console.log(me);
+              $(".list").find(".avatar").attr("src", me.foto);
+              $(".list").find(".name").text("Nombre:" + me.nombre);
               $(".signup").remove();
               $(".list").show();
 
