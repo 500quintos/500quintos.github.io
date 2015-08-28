@@ -56,15 +56,14 @@ input[type=file]{
 .inscritos img{
   width: 100%;
   border-radius: 25%;
+  max-height: 200px;
+  margin: 0 auto;
+  display: block;  
 }
 
 .inscritos p{
   text-align: center;
   font-size: 2em;
-}
-
-.inscrito{
-  max-height: 150px;
 }
 
 .guardar{
