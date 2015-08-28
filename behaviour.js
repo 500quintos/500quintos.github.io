@@ -89,7 +89,7 @@ $(document).ready(function(){
               var key = childSnapshot.key();
               var childData = childSnapshot.val();
               var foto = childData.foto || "placeholder.jpg";
-              $(".inscritos .row").append('<div class="col-xs-12 col-sm-6 col-md-3"><img src="'+foto+'"><p>'+childData.nombre+'</p></div>')
+              $(".inscritos .row").append('<div class="col-xs-12 col-sm-6 col-md-3 inscrito"><img src="'+foto+'"><p>'+childData.nombre+'</p></div>')
             });
           });
 
